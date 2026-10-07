@@ -1,0 +1,3 @@
+administer filawarden:
+  title: 'Administer FilaWarden'
+  restrict access: true

@@ -1,0 +1,6 @@
+name: FilaWarden
+type: module
+description: 'Operations intelligence, deployment auditor, and production sentinel. Same activities and look as FilaWarden for Filament.'
+core_version_requirement: ^10.3 || ^11
+package: FilaWarden
+configure: filawarden.page

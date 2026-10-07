@@ -1,0 +1,18 @@
+filawarden.page:
+  path: '/admin/filawarden/{page}'
+  defaults:
+    _controller: '\Drupal\filawarden\Controller\FilaWardenController::page'
+    _title: 'FilaWarden'
+    page: dashboard
+  requirements:
+    _permission: 'administer filawarden'
+    page: 'dashboard|auditor|infrastructure|queues|scheduler|database|error-log|ssl|risk-files'
+filawarden.action:
+  path: '/admin/filawarden/action/{action}'
+  defaults:
+    _controller: '\Drupal\filawarden\Controller\FilaWardenController::action'
+  requirements:
+    _permission: 'administer filawarden'
+    _csrf_token: 'TRUE'
+    action: '[a-z0-9_-]+'
+  methods: [POST]

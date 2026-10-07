@@ -1,0 +1,8 @@
+shell:
+  css:
+    theme:
+      css/filawarden.css: {}
+  js:
+    js/filawarden.js: {}
+  dependencies:
+    - core/drupal

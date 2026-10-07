@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * FilaWarden Core for Drupal.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_cron().
+ */
+function filawarden_cron(): void {
+  \Drupal::state()->set('filawarden_heartbeat', \Drupal::time()->getRequestTime());
+}

@@ -1,0 +1,95 @@
+
+/* FilaWarden operations shell — matches Filament edition (slate-900 sidebar, card canvas) */
+:root {
+  --fw-sidebar: #0f172a;
+  --fw-sidebar-border: rgba(255,255,255,.08);
+  --fw-canvas: #f1f5f9;
+  --fw-card: #ffffff;
+  --fw-line: #e2e8f0;
+  --fw-text: #0f172a;
+  --fw-muted: #64748b;
+  --fw-emerald: #059669;
+  --fw-amber: #d97706;
+  --fw-red: #dc2626;
+  --fw-blue: #2563eb;
+  --fw-indigo: #4f46e5;
+}
+.fw-app.dark {
+  --fw-canvas: #0b1220;
+  --fw-card: #111827;
+  --fw-line: rgba(255,255,255,.1);
+  --fw-text: #f8fafc;
+  --fw-muted: #94a3b8;
+}
+.fw-app, .fw-app * { box-sizing: border-box; }
+.fw-app {
+  position: fixed; inset: 0; z-index: 100000;
+  display: flex; background: var(--fw-canvas); color: var(--fw-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px; line-height: 1.45;
+}
+.fw-sidebar {
+  width: 260px; flex-shrink: 0; background: var(--fw-sidebar); color: #cbd5e1;
+  border-right: 1px solid var(--fw-sidebar-border);
+  box-shadow: 4px 0 24px -4px rgba(0,0,0,.25);
+  display: flex; flex-direction: column; overflow: auto;
+}
+.fw-brand { display: flex; gap: 10px; align-items: center; padding: 18px 16px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.fw-mark { width: 34px; height: 34px; border-radius: 10px; background: #10b981; color: #042f2e; display: grid; place-items: center; font-weight: 800; }
+.fw-brand strong { color: #fff; display: block; font-size: 14px; }
+.fw-brand span { color: #94a3b8; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+.fw-nav { padding: 14px 10px; display: flex; flex-direction: column; gap: 2px; }
+.fw-nav .grp { margin: 12px 8px 6px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #64748b; font-weight: 700; }
+.fw-nav a { color: #cbd5e1; text-decoration: none; border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.fw-nav a:hover { background: rgba(255,255,255,.05); color: #fff; }
+.fw-nav a.active { background: rgba(16,185,129,.16); color: #6ee7b7; }
+.fw-nav a.pro { color: #fcd34d; }
+.fw-main { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: auto; }
+.fw-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 22px; border-bottom: 1px solid var(--fw-line); background: var(--fw-card); position: sticky; top: 0; z-index: 2; }
+.fw-top h1 { margin: 0; font-size: 18px; }
+.fw-top p { margin: 2px 0 0; color: var(--fw-muted); font-size: 12px; }
+.fw-actions { display: flex; gap: 8px; align-items: center; }
+.fw-content { padding: 22px; display: flex; flex-direction: column; gap: 16px; }
+.fw-grid { display: grid; gap: 14px; }
+.fw-grid.cols-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.fw-grid.cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.fw-grid.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.fw-card { background: var(--fw-card); border: 1px solid var(--fw-line); border-radius: 12px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+.fw-card h3 { margin: 0 0 4px; font-size: 14px; }
+.fw-card p, .fw-muted { color: var(--fw-muted); }
+.fw-score { font-size: 40px; font-weight: 750; letter-spacing: -0.04em; line-height: 1; }
+.fw-badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 2px 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.fw-badge.healthy, .fw-badge.passed { background: #ecfdf5; color: #047857; }
+.fw-badge.warning { background: #fffbeb; color: #b45309; }
+.fw-badge.danger, .fw-badge.failed { background: #fef2f2; color: #b91c1c; }
+.fw-app.dark .fw-badge.healthy, .fw-app.dark .fw-badge.passed { background: rgba(16,185,129,.15); color: #6ee7b7; }
+.fw-app.dark .fw-badge.warning { background: rgba(245,158,11,.15); color: #fcd34d; }
+.fw-app.dark .fw-badge.danger, .fw-app.dark .fw-badge.failed { background: rgba(239,68,68,.15); color: #fca5a5; }
+.fw-bar { height: 8px; background: #e2e8f0; border-radius: 99px; overflow: hidden; }
+.fw-app.dark .fw-bar { background: #1f2937; }
+.fw-bar > span { display: block; height: 100%; background: #10b981; }
+.fw-bar.warn > span { background: #f59e0b; }
+.fw-bar.bad > span { background: #ef4444; }
+table.fw-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.fw-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--fw-muted); padding: 8px; border-bottom: 1px solid var(--fw-line); }
+table.fw-table td { padding: 10px 8px; border-bottom: 1px solid var(--fw-line); vertical-align: top; }
+.fw-btn, button.fw-btn { border: 1px solid var(--fw-line); background: var(--fw-card); color: var(--fw-text); border-radius: 8px; padding: 7px 12px; font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+.fw-btn.primary { background: #059669; border-color: #059669; color: #fff; }
+.fw-btn.danger { background: #dc2626; border-color: #dc2626; color: #fff; }
+.fw-btn.amber { background: #d97706; border-color: #d97706; color: #fff; }
+.fw-launch { display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: inherit; min-height: 132px; }
+.fw-launch:hover { border-color: #34d399; }
+.fw-k { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--fw-muted); font-weight: 700; }
+.fw-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.fw-feed { background: #020617; color: #34d399; border-radius: 12px; padding: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 1.6; }
+.fw-note { font-size: 12px; color: var(--fw-muted); }
+input.fw-input, textarea.fw-input, select.fw-input { width: 100%; border: 1px solid var(--fw-line); background: var(--fw-card); color: var(--fw-text); border-radius: 8px; padding: 8px 10px; }
+@media (max-width: 1100px) {
+  .fw-grid.cols-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .fw-sidebar { width: 220px; }
+}
+@media (max-width: 760px) {
+  .fw-app { flex-direction: column; }
+  .fw-sidebar { width: 100%; max-height: 220px; }
+  .fw-grid.cols-4, .fw-grid.cols-3, .fw-grid.cols-2 { grid-template-columns: 1fr; }
+}

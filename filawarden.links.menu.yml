@@ -1,0 +1,6 @@
+filawarden.page:
+  title: 'FilaWarden'
+  description: 'Operations intelligence'
+  route_name: filawarden.page
+  parent: system.admin
+  weight: 50
