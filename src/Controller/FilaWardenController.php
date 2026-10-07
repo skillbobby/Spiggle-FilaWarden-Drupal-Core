@@ -150,10 +150,9 @@ class FilaWardenController extends ControllerBase {
 
   private function pageDashboard(): string {
     $h = $this->health();
-    $cards = '';
+    $pills = '';
     foreach ($h['vectors'] as $v) {
-      $cls = $v['status'] === 'healthy' ? '' : ($v['status'] === 'warning' ? ' warn' : ' bad');
-      $cards .= '<div class="fw-card"><div class="fw-k">' . htmlspecialchars($v['name']) . '</div><div class="fw-score" style="font-size:28px">' . (int) $v['score'] . '</div>' . $this->badge($v['status']) . '<div class="fw-bar' . $cls . '" style="margin-top:8px"><span style="width:' . (int) $v['score'] . '%"></span></div></div>';
+      $pills .= '<div class="fw-pill"><div class="fw-k">' . htmlspecialchars($v['name']) . '</div><div class="fw-score" style="font-size:18px">' . (int) $v['score'] . '%</div>' . $this->badge($v['status']) . '</div>';
     }
     $grid = '';
     $links = [
@@ -171,7 +170,9 @@ class FilaWardenController extends ControllerBase {
       $grid .= '<a class="fw-card fw-launch" href="' . $url . '"><h3>' . htmlspecialchars($meta[0]) . '</h3><p>' . htmlspecialchars($meta[1]) . '</p></a>';
     }
     $feed = '<div class="fw-feed">[' . gmdate('H:i:s') . '] INFO FilaWarden Drupal core online<br>[' . gmdate('H:i:s') . '] INFO Health ' . (int) $h['overall'] . ' (' . htmlspecialchars($h['status_label']) . ')</div>';
-    return '<div class="fw-grid cols-4"><div class="fw-card"><div class="fw-k">Overall</div><div class="fw-score">' . (int) $h['overall'] . '</div>' . $this->badge($h['status']) . '</div>' . $cards . '</div><div class="fw-card"><h3>Subsystem Quick Access</h3><div class="fw-grid cols-4" style="margin-top:12px">' . $grid . '</div></div>' . $feed;
+    $hero = '<div class="fw-card"><div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div class="fw-scoretile ' . htmlspecialchars($h['status']) . '">' . (int) $h['overall'] . '</div><div><h3>Overall Operations Health</h3><p>Evaluated across 5 core reliability vectors. Last assessment: ' . htmlspecialchars($h['evaluated_at']) . '.</p>' . $this->badge($h['status']) . '</div></div><div class="fw-grid cols-4" style="margin-top:14px">' . $pills . '</div></div>';
+    $banner = \Drupal::moduleHandler()->moduleExists('filawarden_advanced') ? '' : '<div class="fw-banner"><div><strong>FilaWarden Pro</strong><div class="fw-note">Security intelligence, APM, incidents, and webhooks are in the commercial add-on.</div></div><a class="fw-btn amber" href="https://filawarden.com">Upgrade</a></div>';
+    return $hero . $banner . '<div class="fw-card"><h3>Subsystem Quick Access</h3><div class="fw-grid cols-4" style="margin-top:12px">' . $grid . '</div></div>' . $feed;
   }
 
   private function pageAuditor(): string {
